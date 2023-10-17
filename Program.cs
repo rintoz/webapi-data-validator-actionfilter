@@ -1,3 +1,6 @@
+using DataValidator.Interface;
+using DataValidator.Repository;
+
 namespace DataValidator
 {
     public class Program
@@ -12,6 +15,8 @@ namespace DataValidator
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddTransient<IProductRepository, ProductRepository>();
 
             var app = builder.Build();
 
