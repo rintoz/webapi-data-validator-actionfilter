@@ -14,11 +14,12 @@ namespace DataValidator
             {
                 config.Filters.Add(typeof(DataValidatorActionFilter));
             });
-            
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddTransient<IProductRepository, ProductRepository>();
+            builder.Services.AddSingleton<DataValidatorTypeFactory>();
 
             var app = builder.Build();
 

@@ -7,7 +7,7 @@ namespace DataValidator.Controllers
 {
     [ApiController]
     [Route("products")]
-    public class ProductsController : ControllerBase
+    public class ProductsController : ControllerBase, IProductsController
     {
         private readonly IProductRepository productRepository;
 
