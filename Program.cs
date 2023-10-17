@@ -1,6 +1,7 @@
 using DataValidator.Interface;
 using DataValidator.Repository;
 using DataValidator.Validator;
+using System.Text.Json.Serialization;
 
 namespace DataValidator
 {
@@ -13,6 +14,9 @@ namespace DataValidator
             builder.Services.AddControllers(config =>
             {
                 config.Filters.Add(typeof(DataValidatorActionFilter));
+            }).AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
 
             builder.Services.AddEndpointsApiExplorer();
@@ -28,6 +32,8 @@ namespace DataValidator
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+
+            app.UseExceptionHandler("/error");
 
             app.UseAuthorization();
 
