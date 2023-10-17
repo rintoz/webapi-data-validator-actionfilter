@@ -1,5 +1,6 @@
 using DataValidator.Interface;
 using DataValidator.Repository;
+using DataValidator.Validator;
 
 namespace DataValidator
 {
@@ -9,10 +10,11 @@ namespace DataValidator
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddControllers(config =>
+            {
+                config.Filters.Add(typeof(DataValidatorActionFilter));
+            });
+            
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -20,7 +22,6 @@ namespace DataValidator
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -28,7 +29,6 @@ namespace DataValidator
             }
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 

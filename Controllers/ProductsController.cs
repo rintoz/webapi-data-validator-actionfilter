@@ -1,6 +1,5 @@
 ﻿using DataValidator.Interface;
 using DataValidator.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
